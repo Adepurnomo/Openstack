@@ -33,3 +33,6 @@ packstack --answer-file /root/answer.txt
 echo "--------------------"
 echo " password arumi2507 "
 echo "--------------------"
+echo " For your testing on GCP or AWS, put your external ip to /etc/http/conf.d/15-horizon* search 'ServerAlias' " 
+echo " and vnc /etc/nova/nova.conf search 'http://xXx:6080' ad place your external ip "
+echo " don't forget, enable nested virtualization on your vm instance AWS or GCP "
