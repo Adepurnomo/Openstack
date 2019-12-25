@@ -1,1 +1,1 @@
-# Openstack raw istaller
+# Openstack raw installer
