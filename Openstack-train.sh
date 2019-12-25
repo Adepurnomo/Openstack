@@ -15,7 +15,8 @@ yum remove postfix NetworkManager NetworkManager-libnm
 seteforce 0
 getenforce
 sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux
-yum install centos-release-openstack-train openstack-packstack -y
+yum install centos-release-openstack-train -y
+yum install openstack-packstack -y
 packstack --gen-answer-file=/root/answer.txt
 sed -i 's/CONFIG_NTP_SERVERS=/CONFIG_NTP_SERVERS=0.pool.ntp.org/g' /root/answer.txt
 sed -i 's/CONFIG_KEYSTONE_ADMIN_PW=*/#CONFIG_KEYSTONE_ADMIN_PW=*/g' /root/answer.txt
