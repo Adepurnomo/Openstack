@@ -11,7 +11,7 @@ yum update -y
 systemctl stop postfix firewalld NetworkManager
 systemctl disable postfix firewalld NetworkManager
 systemctl mask NetworkManager
-yum remove postfix NetworkManager NetworkManager-libnm
+yum remove postfix NetworkManager NetworkManager-libnm -y
 seteforce 0
 getenforce
 sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux
