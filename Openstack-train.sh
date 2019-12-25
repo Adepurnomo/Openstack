@@ -8,10 +8,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 yum update -y
-systemctl disable NetworkManager
-systemctl disable firewalld
-systemctl stop NetworkManager
-systemctl stop firewalld
+systemctl stop postfix firewalld NetworkManager
+systemctl disable postfix firewalld NetworkManager
+systemctl mask NetworkManager
+yum remove postfix NetworkManager NetworkManager-libnm
 seteforce 0
 getenforce
 sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux
