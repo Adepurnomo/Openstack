@@ -1,3 +1,12 @@
+#!/bin/bash
+##
+clear
+if [[ $EUID -ne 0 ]]; then
+   echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+   echo "            Please run this scripts on SU !               "
+   echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+   exit 1
+fi
 yum update -y
 systemctl disable NetworkManager
 systemctl disable firewalld
