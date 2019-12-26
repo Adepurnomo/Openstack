@@ -11,7 +11,6 @@ fi
 echo " wait... "
 echo "---------"
 tuned-adm profile throughput-performance
-yum install curl -y >> /dev/null 2>&1
 mkdir -p /opt/temp
 curl -o /opt/temp/spinner.sh https://raw.githubusercontent.com/tlatsas/bash-spinner/master/spinner.sh >> /dev/null 2>&1
 chmod a+x /opt/temp/spinner.sh
