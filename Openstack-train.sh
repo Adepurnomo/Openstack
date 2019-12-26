@@ -56,13 +56,13 @@ sleep 3
 echo "."
 packstack --answer-file /root/answer.txt
 
-echo "----------------------------------"
-echo "       disable ssh 4 root         "
-echo "----------------------------------"
-echo "."
-sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
-sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
-systemctl restart sshd
+#echo "----------------------------------"
+#echo "       disable ssh 4 root         "
+#echo "----------------------------------"
+#echo "."
+#sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+#sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+#systemctl restart sshd
 sleep 3
 echo "----------------------------------"
 echo "        password arumi2507        "
