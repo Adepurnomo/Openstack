@@ -47,25 +47,27 @@ EOF
 echo "----------------------------------"
 echo "        enable ssh 4 root         "
 echo "----------------------------------"
+echo "."
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
-
+sleep 3
 packstack --answer-file /root/answer.txt
 
 echo "----------------------------------"
 echo "       disable ssh 4 root         "
 echo "----------------------------------"
+echo "."
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 systemctl restart sshd
-
+sleep 3
 echo "----------------------------------"
 echo "        password arumi2507        "
 echo "----------------------------------"
 echo "."
 echo " ----------------------------------------------------------------------------------------------------------"
 echo " For your testing on GCP or AWS, put your external ip to /etc/http/conf.d/15-horizon* search 'ServerAlias' " 
-echo " and vnc /etc/nova/nova.conf search 'http://xXx:6080' & place your external ip "
-echo " don't forget, enable nested virtualization on your vm instance AWS or GCP "
+echo "              and vnc /etc/nova/nova.conf search 'http://xXx:6080' & place your external ip                "
+echo "                don't forget, enable nested virtualization on your vm instance AWS or GCP                  "
 echo " ----------------------------------------------------------------------------------------------------------"
