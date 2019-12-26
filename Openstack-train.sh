@@ -50,7 +50,6 @@ echo "----------------------------------"
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
-passwd root 
 
 packstack --answer-file /root/answer.txt
 
