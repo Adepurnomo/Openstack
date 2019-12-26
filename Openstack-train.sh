@@ -54,7 +54,6 @@ passwd root
 
 packstack --answer-file /root/answer.txt
 
-
 echo "----------------------------------"
 echo "       disable ssh 4 root         "
 echo "----------------------------------"
