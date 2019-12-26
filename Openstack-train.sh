@@ -44,10 +44,27 @@ CONFIG_KEYSTONE_ADMIN_PW=arumi2507
 CONFIG_MARIADB_PW=arumi2507
 EOF
 
+echo "----------------------------------"
+echo " Set password & enable ssh 4 root "
+echo "----------------------------------"
+sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+systemctl restart sshd
+passwd root 
+
 packstack --answer-file /root/answer.txt
-echo "--------------------"
-echo " password arumi2507 "
-echo "--------------------"
+
+
+echo "----------------------------------"
+echo "       disable ssh 4 root         "
+echo "----------------------------------"
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+systemctl restart sshd
+
+echo "----------------------------------"
+echo "        password arumi2507        "
+echo "----------------------------------"
 echo " For your testing on GCP or AWS, put your external ip to /etc/http/conf.d/15-horizon* search 'ServerAlias' " 
 echo " and vnc /etc/nova/nova.conf search 'http://xXx:6080' & place your external ip "
 echo " don't forget, enable nested virtualization on your vm instance AWS or GCP "
