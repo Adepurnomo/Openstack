@@ -28,7 +28,7 @@ yum install centos-release-openstack-train -y >> /dev/null 2>&1
 yum install openstack-packstack -y >> /dev/null 2>&1
 cd /opt/temp
 stop_spinner $?
-seteforce 0 
+setenforce 0 
 getenforce 
 packstack --gen-answer-file=/root/answer.txt
 sed -i 's/CONFIG_NTP_SERVERS=/CONFIG_NTP_SERVERS=0.pool.ntp.org/' /root/answer.txt
