@@ -45,7 +45,7 @@ CONFIG_MARIADB_PW=arumi2507
 EOF
 
 echo "----------------------------------"
-echo " Set password & enable ssh 4 root "
+echo "        enable ssh 4 root         "
 echo "----------------------------------"
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
