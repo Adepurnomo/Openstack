@@ -8,7 +8,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-echo " wait..."
+echo " wait... "
+echo "---------"
 yum install curl -y >> /dev/null 2>&1
 mkdir -p /opt/temp
 curl -o /opt/temp/spinner.sh https://raw.githubusercontent.com/tlatsas/bash-spinner/master/spinner.sh >> /dev/null 2>&1
@@ -52,6 +53,7 @@ sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 systemctl restart sshd
 sleep 3
+echo "."
 packstack --answer-file /root/answer.txt
 
 echo "----------------------------------"
