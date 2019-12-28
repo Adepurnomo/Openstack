@@ -12,7 +12,7 @@ echo " wait... "
 echo "---------"
 tuned-adm profile throughput-performance
 
-echo "|Update & configure your instance (take several minute. -->"
+echo "|Update & configure your instance (take several minute.."
 sleep 1
 yum update -y >> /dev/null 2>&1
 systemctl stop postfix firewalld NetworkManager >> /dev/null 2>&1
@@ -33,7 +33,6 @@ sed -i 's/CONFIG_MARIADB_PW=*/#CONFIG_MARIADB_PW=*/g' /root/answer.txt
 sed -i 's/CONFIG_PROVISION_DEMO=y/CONFIG_PROVISION_DEMO=n/g' /root/answer.txt
 sed -i 's/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=ovn/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=openvswitch/' /root/answer.txt
 sed -i 's/CONFIG_NEUTRON_L2_AGENT=ovn/CONFIG_NEUTRON_L2_AGENT=openvswitch/' /root/answer.txt
-
 cat <<EOF>> /root/answer.txt
 CONFIG_KEYSTONE_ADMIN_PW=arumi2507
 CONFIG_MARIADB_PW=arumi2507
@@ -43,8 +42,9 @@ echo "----------------------------------"
 echo "        enable ssh 4 root         "
 echo "----------------------------------"
 echo "."
-sed -i 's/PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
-sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+echo "arumi2507" | passwd --stdin root
 systemctl restart sshd
 sleep 3
 echo "."
@@ -54,13 +54,13 @@ echo "----------------------------------"
 echo "       disable ssh 4 root         "
 echo "----------------------------------"
 echo "."
-sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 systemctl restart sshd
 sleep 3
-echo "----------------------------------"
-echo "        password arumi2507        "
-echo "----------------------------------"
+echo "-----------------------------------------------------------------------------------------------------------"
+echo "                               password dashboard & root password arumi2507                                "
+echo "-----------------------------------------------------------------------------------------------------------"
 echo "."
 echo " ----------------------------------------------------------------------------------------------------------"
 echo " For your testing on GCP or AWS, put your external ip to /etc/httpd/conf.d/15-horizon* search 'ServerAlias'" 
