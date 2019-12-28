@@ -36,8 +36,8 @@ sed -i 's/CONFIG_KEYSTONE_ADMIN_PW=*/#CONFIG_KEYSTONE_ADMIN_PW=*/' /root/answer.
 sed -i 's/CONFIG_MARIADB_PW=*/#CONFIG_MARIADB_PW=*/g' /root/answer.txt
 sed -i 's/ONFIG_SWIFT_STORAGE_FSTYPE=ext4/ONFIG_SWIFT_STORAGE_FSTYPE=xfs/' /root/answer.txt
 sed -i 's/CONFIG_PROVISION_DEMO=y/CONFIG_PROVISION_DEMO=n/g' /root/answer.txt
-#sed -i 's/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=ovn/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=openvswitch/' /root/answer.txt
-#sed -i 's/CONFIG_NEUTRON_L2_AGENT=ovn/CONFIG_NEUTRON_L2_AGENT=openvswitch/' /root/answer.txt
+sed -i 's/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=ovn/CONFIG_NEUTRON_ML2_MECHANISM_DRIVERS=openvswitch/' /root/answer.txt
+sed -i 's/CONFIG_NEUTRON_L2_AGENT=ovn/CONFIG_NEUTRON_L2_AGENT=openvswitch/' /root/answer.txt
 
 cat <<EOF>> /root/answer.txt
 CONFIG_KEYSTONE_ADMIN_PW=arumi2507
@@ -55,13 +55,13 @@ sleep 3
 echo "."
 packstack --answer-file /root/answer.txt
 
-#echo "----------------------------------"
-#echo "       disable ssh 4 root         "
-#echo "----------------------------------"
-#echo "."
-#sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
-#sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
-#systemctl restart sshd
+echo "----------------------------------"
+echo "       disable ssh 4 root         "
+echo "----------------------------------"
+echo "."
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+systemctl restart sshd
 sleep 3
 echo "----------------------------------"
 echo "        password arumi2507        "
