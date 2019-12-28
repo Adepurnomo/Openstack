@@ -12,7 +12,6 @@ echo " wait... "
 echo "---------"
 tuned-adm profile throughput-performance
 
-source "/opt/temp/spinner.sh"
 echo "|Update & configure your instance (take several minute. -->"
 sleep 1
 yum update -y >> /dev/null 2>&1
