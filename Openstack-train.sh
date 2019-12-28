@@ -14,13 +14,12 @@ tuned-adm profile throughput-performance
 
 echo "|Update & configure your instance (take several minute.."
 sleep 1
-yum update -y >> /dev/null 2>&1
-systemctl stop postfix firewalld NetworkManager >> /dev/null 2>&1
-systemctl disable postfix firewalld NetworkManager >> /dev/null 2>&1
-systemctl mask NetworkManager >> /dev/null 2>&1
-yum remove postfix NetworkManager NetworkManager-libnm -y >> /dev/null 2>&1
+systemctl stop firewalld >> /dev/null 2>&1
+systemctl disable firewalld >> /dev/null 2>&1
+systemctl stop NetworkManager >> /dev/null 2>&1
+systemctl disable NetworkManager >> /dev/null 2>&1
 sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux 
-yum install centos-release-openstack-stein -y >> /dev/null 2>&1
+yum install centos-release-openstack-train -y >> /dev/null 2>&1
 yum install openstack-packstack -y >> /dev/null 2>&1
 
 setenforce 0 
