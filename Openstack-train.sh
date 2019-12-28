@@ -56,6 +56,7 @@ echo "."
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 systemctl restart sshd
+systemctl enable openstack-glance-api.service
 sleep 3
 echo "-----------------------------------------------------------------------------------------------------------"
 echo "                               password dashboard & root password arumi2507                                "
