@@ -18,7 +18,7 @@ systemctl stop firewalld >> /dev/null 2>&1
 systemctl disable firewalld >> /dev/null 2>&1
 systemctl stop NetworkManager >> /dev/null 2>&1
 systemctl disable NetworkManager >> /dev/null 2>&1
-sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux 
+sed -i 's/enforcing/disabled/g' /etc/selinux/config
 yum install centos-release-openstack-train -y >> /dev/null 2>&1
 yum install openstack-packstack -y >> /dev/null 2>&1
 
@@ -56,28 +56,6 @@ echo "."
 sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 systemctl restart sshd
-#-->not enable this script, "openstack-glance-api.service" can't started after reboot your openstack host
-cat <<EOF>> /root/selinux.sh
-#!/bin/sh
-setenforce 0
-EOF
-
-cat <<EOF>> /etc/systemd/system/kampret.service
-[Unit]
-Description= selinux-kampret
-After=network-online.target
-
-[Service]
-ExecStart=/root/selinux.sh
-TimeoutStartSec=0
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-chmod a+x /root/selinux.sh /etc/systemd/system/kampret.service
-systemctl daemon-reload
-systemctl enable kampret
 
 sleep 3
 echo "-----------------------------------------------------------------------------------------------------------"
