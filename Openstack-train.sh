@@ -20,6 +20,7 @@ systemctl stop NetworkManager >> /dev/null 2>&1
 systemctl disable NetworkManager >> /dev/null 2>&1
 sed -i 's/enforcing/disabled/g' /etc/selinux/config
 yum install python-openstackclient -y >> /dev/null 2>&1
+yum install https://rdoproject.org/repos/rdo-release.rpm -y >> /dev/null 2>&1
 yum install centos-release-openstack-train -y >> /dev/null 2>&1
 yum install openstack-packstack -y >> /dev/null 2>&1
 
