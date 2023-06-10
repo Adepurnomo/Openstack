@@ -8,6 +8,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+echo "                                       README"
+echo "-----------------------------------------------------------------------------"
+echo " Please wait for procces <Testing if puppet apply is finished>               "
+echo " if you cancel this ^ procces, login from dashboard http://yourip/dashboard  "
+echo " using account admin & pass --> arumi2507                                    "
+echo "-----------------------------------------------------------------------------"
+sleep 20 >> /dev/null 2>&1
 echo " wait... "
 echo "---------"
 tuned-adm profile throughput-performance
@@ -43,10 +50,10 @@ echo "----------------------------------"
 echo "."
 sed -i 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-echo "arumi2507" | passwd --stdin root
+#echo "arumi2507" | passwd --stdin root
 systemctl restart sshd
 sleep 3
-echo "."
+#echo "."
 packstack --answer-file /root/answer.txt
 
 #echo "----------------------------------"
@@ -59,11 +66,11 @@ echo "."
 
 sleep 3
 echo "-----------------------------------------------------------------------------------------------------------"
-echo "                               password dashboard & root password arumi2507                                "
+echo "                                      user: admin | password: arumi2507                                    "
 echo "-----------------------------------------------------------------------------------------------------------"
 echo "."
 echo " ----------------------------------------------------------------------------------------------------------"
 echo " For your testing on GCP or AWS, put your external ip to /etc/httpd/conf.d/15-horizon* search 'ServerAlias'" 
-echo "              and vnc /etc/nova/nova.conf search 'http://xXx:6080' & place your external ip                "
+echo "              and vnc /etc/nova/nova.conf search 'http://generateip:6080' & place your external ip         "
 echo "                don't forget, enable nested virtualization on your vm instance AWS or GCP                  "
 echo " ----------------------------------------------------------------------------------------------------------"
